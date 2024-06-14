@@ -54,6 +54,9 @@ func (j *JSON) Scan(value interface{}) error {
 
 // MarshalJSON to output non base64 encoded []byte
 func (j JSON) MarshalJSON() ([]byte, error) {
+	if len(j) == 0 {
+        	return []byte("[]"), nil
+    	}
 	return json.RawMessage(j).MarshalJSON()
 }
 
